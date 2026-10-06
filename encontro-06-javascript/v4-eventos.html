@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v4 · Busca e filtro</title>
+  <link rel="stylesheet" href="base.css">
+  <script src="dados.js" defer></script>
+  <script src="v4-eventos.js" defer></script>
+</head>
+<body>
+  <div class="faixa">v4 · A lista responde enquanto a pessoa digita
+    <small>input, change e uma função só de filtragem</small></div>
+  <div class="area">
+    <h1>Painel de Super-Heróis</h1>
+
+    <div class="controles">
+      <div>
+        <label for="busca">Buscar por nome</label>
+        <input type="search" id="busca" placeholder="bat, man, thor...">
+      </div>
+      <div>
+        <label for="editora">Editora</label>
+        <select id="editora"><option value="">Todas</option></select>
+      </div>
+      <div>
+        <label for="ordenar">
+          <input type="checkbox" id="ordenar" style="min-height:auto"> Ordenar por poder
+        </label>
+      </div>
+    </div>
+
+    <p class="contador" id="contador"></p>
+    <div class="cartoes" id="lista"></div>
+    <div class="nota">Os três controles chamam a mesma função. Repare que a busca usa <code>input</code>, que dispara a cada tecla, e o select usa <code>change</code>, que dispara quando o valor muda.</div>
+  </div>
+</body>
+</html>

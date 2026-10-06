@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v5 · Cadastro com validação</title>
+  <link rel="stylesheet" href="base.css">
+  <script src="dados.js" defer></script>
+  <script src="v5-validacao.js" defer></script>
+</head>
+<body>
+  <div class="faixa">v5 · Cadastro com validação acessível
+    <small>submit, preventDefault, foco no primeiro erro e mensagem anunciada</small></div>
+  <div class="area">
+    <h1>Painel de Super-Heróis</h1>
+
+    <h2>Cadastrar um herói</h2>
+    <form id="form-heroi" novalidate>
+      <div class="campo">
+        <label for="nome">Nome do herói</label>
+        <input type="text" id="nome" aria-describedby="erro-nome">
+        <p class="erro" id="erro-nome"></p>
+      </div>
+      <div class="campo">
+        <label for="nomeReal">Nome real</label>
+        <input type="text" id="nomeReal" aria-describedby="erro-nomeReal">
+        <p class="erro" id="erro-nomeReal"></p>
+      </div>
+      <div class="campo">
+        <label for="editora">Editora</label>
+        <select id="editora" aria-describedby="erro-editora">
+          <option value="">Selecione</option>
+          <option>Marvel Comics</option>
+          <option>DC Comics</option>
+          <option>Dark Horse Comics</option>
+          <option>Sem editora</option>
+        </select>
+        <p class="erro" id="erro-editora"></p>
+      </div>
+      <div class="campo">
+        <label for="poder">Poder</label>
+        <input type="text" id="poder" inputmode="numeric" aria-describedby="dica-poder erro-poder">
+        <p class="dica" id="dica-poder">Um número de 0 a 100.</p>
+        <p class="erro" id="erro-poder"></p>
+      </div>
+      <div class="campo"><button type="submit">Cadastrar herói</button></div>
+      <p id="status" class="status" role="status"></p>
+    </form>
+
+    <h2>Lista</h2>
+    <p class="contador" id="contador"></p>
+    <div class="cartoes" id="lista"></div>
+    <div class="nota">Tente enviar com tudo vazio: as quatro mensagens aparecem de uma vez e o foco vai para o primeiro campo. Depois cadastre um herói com poder 150 e veja a mensagem mudar.</div>
+  </div>
+</body>
+</html>
