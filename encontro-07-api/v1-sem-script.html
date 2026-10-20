@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v1 · Painel sem script</title>
+  <link rel="stylesheet" href="base.css">
+</head>
+<body>
+  <div class="faixa">v1 · A página sem nenhum JavaScript
+    <small>Tudo escrito à mão no HTML. O botão não faz nada.</small></div>
+  <div class="area">
+    <h1>Painel de Super-Heróis</h1>
+    <p>Três heróis escritos direto no HTML, um por um.</p>
+
+    <div class="controles">
+      <div>
+        <label for="busca">Buscar por nome</label>
+        <input type="search" id="busca" placeholder="Digite um nome">
+      </div>
+      <button type="button">Buscar</button>
+    </div>
+    <p class="contador">3 heróis na tela</p>
+
+    <div class="cartoes">
+      <article class="cartao">
+        <img src="https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/226-doctor-strange.jpg" alt="Doctor Strange">
+        <div class="corpo">
+          <h3>Doctor Strange</h3>
+          <p class="real">Stephen Strange</p>
+          <span class="editora">Marvel Comics</span>
+          <p class="stats"><span>Poder 100</span><span>Combate 60</span></p>
+        </div>
+      </article>
+      <article class="cartao">
+        <img src="https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/346-iron-man.jpg" alt="Iron Man">
+        <div class="corpo">
+          <h3>Iron Man</h3>
+          <p class="real">Tony Stark</p>
+          <span class="editora">Marvel Comics</span>
+          <p class="stats"><span>Poder 100</span><span>Combate 64</span></p>
+        </div>
+      </article>
+      <article class="cartao">
+        <img src="https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/70-batman.jpg" alt="Batman">
+        <div class="corpo">
+          <h3>Batman</h3>
+          <p class="real">Bruce Wayne</p>
+          <span class="editora">DC Comics</span>
+          <p class="stats"><span>Poder 47</span><span>Combate 100</span></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="nota">Para mostrar mais um herói, é preciso copiar e colar todo esse bloco de HTML. Doze heróis são doze blocos. É esse trabalho que o JavaScript vai eliminar na v3.</div>
+  </div>
+</body>
+</html>

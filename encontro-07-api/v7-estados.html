@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v7 · Os quatro estados da tela</title>
+  <link rel="stylesheet" href="base.css">
+  <script src="v7-estados.js" defer></script>
+</head>
+<body>
+  <div class="faixa">v7 · Carregando, erro, vazio e sucesso
+    <small>Os botões abaixo forçam cada estado na frente da turma</small></div>
+  <div class="area">
+    <h1>Painel de Super-Heróis</h1>
+
+    <div class="barra">
+      <button type="button" id="recarregar">Recarregar</button>
+      <button type="button" class="secundario" id="lento">Simular rede lenta</button>
+      <button type="button" class="secundario" id="erro">Simular erro</button>
+    </div>
+
+    <div class="controles">
+      <div>
+        <label for="busca">Buscar por nome</label>
+        <input type="search" id="busca" placeholder="bat, thor, spider..." disabled>
+      </div>
+      <div>
+        <label for="editora">Editora</label>
+        <select id="editora" disabled><option value="">Todas</option></select>
+      </div>
+    </div>
+
+    <p class="contador" id="contador"></p>
+    <div id="painel"></div>
+    <div class="cartoes" id="lista"></div>
+    <div class="nota">Busque por <code>zzz</code> para ver o estado vazio. Os campos ficam desabilitados enquanto a busca na API não termina, porque filtrar o que ainda não chegou não faz sentido.</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+{
+  "info": {
+    "name": "0006957 · Encontro 7 · APIs em sala",
+    "description": "Coleção da aula de consumo de API da UC Usabilidade, desenvolvimento web, mobile e jogos.\n\nDuas APIs públicas, sem chave:\n1. superhero-api, a mesma base usada no aplicativo Android das terças.\n2. ViaCEP, usada na atividade do encontro.\n\nOrdem sugerida em aula: 1, 2, 3, depois 4, 5 e 6.\nCada requisição tem testes na aba Scripts, que aparecem na aba Test Results depois do envio.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseHero",
+      "value": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api"
+    },
+    {
+      "key": "baseCep",
+      "value": "https://viacep.com.br/ws"
+    },
+    {
+      "key": "heroiId",
+      "value": "70"
+    },
+    {
+      "key": "cep",
+      "value": "80010010"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Super-heróis",
+      "description": "A mesma API que o aplicativo Android consome.",
+      "item": [
+        {
+          "name": "1.1 Todos os heróis (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHero}}/all.json",
+              "host": [
+                "{{baseHero}}"
+              ],
+              "path": [
+                "all.json"
+              ]
+            },
+            "description": "O arquivo inteiro: 563 heróis.\n\nO que olhar na tela: o status 200, o tempo da resposta, o tamanho do arquivo e a aba Headers, com o content-type."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const dados = pm.response.json();",
+                  "pm.test(\"A resposta é uma lista\", () => pm.expect(dados).to.be.an(\"array\"));",
+                  "pm.test(\"Veio mais de 500 heróis\", () => pm.expect(dados.length).to.be.above(500));",
+                  "console.log(\"Total de heróis:\", dados.length);",
+                  "console.log(\"Primeiro:\", dados[0].name);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "1.2 Um herói pelo id (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHero}}/id/{{heroiId}}.json",
+              "host": [
+                "{{baseHero}}"
+              ],
+              "path": [
+                "id",
+                "{{heroiId}}.json"
+              ]
+            },
+            "description": "Busca um herói só. Troque a variável heroiId para 226 (Doctor Strange) ou 346 (Iron Man), que são os dois usados no aplicativo Android."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const h = pm.response.json();",
+                  "pm.test(\"Tem nome e powerstats\", () => {",
+                  "  pm.expect(h).to.have.property(\"name\");",
+                  "  pm.expect(h).to.have.property(\"powerstats\");",
+                  "});",
+                  "console.log(h.name, \"| poder:\", h.powerstats.power);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "1.3 Um id que não existe (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseHero}}/id/999999.json",
+              "host": [
+                "{{baseHero}}"
+              ],
+              "path": [
+                "id",
+                "999999.json"
+              ]
+            },
+            "description": "Erro de propósito.\n\nPergunta para a turma: a requisição falhou? Não. Ela funcionou, e o servidor respondeu que não encontrou. É por isso que no código a gente confere resposta.ok."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"O servidor respondeu 404\", () => pm.response.to.have.status(404));",
+                  "console.log(\"Status recebido:\", pm.response.code);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. ViaCEP, da atividade",
+      "description": "API brasileira de endereços, gratuita e sem chave.",
+      "item": [
+        {
+          "name": "2.1 CEP válido (200)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseCep}}/{{cep}}/json/",
+              "host": [
+                "{{baseCep}}"
+              ],
+              "path": [
+                "{{cep}}",
+                "json",
+                ""
+              ]
+            },
+            "description": "O CEP da variável é o da Praça Tiradentes, no centro de Curitiba.\n\nO que olhar: os campos logradouro, bairro, localidade e uf, que a atividade vai usar para preencher o formulário."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const e = pm.response.json();",
+                  "pm.test(\"Veio endereço\", () => pm.expect(e).to.have.property(\"logradouro\"));",
+                  "console.log(e.logradouro, \"-\", e.bairro, \"-\", e.localidade, e.uf);"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "2.2 CEP que não existe (a pegadinha)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseCep}}/99999999/json/",
+              "host": [
+                "{{baseCep}}"
+              ],
+              "path": [
+                "99999999",
+                "json",
+                ""
+              ]
+            },
+            "description": "A pegadinha da atividade.\n\nO status é 200: do ponto de vista do HTTP, deu tudo certo. Quem conferir apenas resposta.ok vai preencher o formulário com undefined. O que denuncia o problema é o campo erro no corpo da resposta."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"O status é 200, mesmo sem achar o CEP\", () => pm.response.to.have.status(200));",
+                  "const e = pm.response.json();",
+                  "const temErro = e.erro === true || e.erro === \"true\";",
+                  "pm.test(\"O corpo avisa que não encontrou\", () => pm.expect(temErro).to.be.true);",
+                  "console.log(\"Corpo da resposta:\", JSON.stringify(e));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "2.3 CEP mal formatado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseCep}}/123/json/",
+              "host": [
+                "{{baseCep}}"
+              ],
+              "path": [
+                "123",
+                "json",
+                ""
+              ]
+            },
+            "description": "CEP curto demais.\n\nAqui o servidor recusa o pedido. Mostre o status e pergunte de quem é o erro: de quem pediu, ou de quem respondeu."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "console.log(\"Status recebido:\", pm.response.code);",
+                  "pm.test(\"O servidor recusou o pedido\", () => pm.expect(pm.response.code).to.be.oneOf([400, 404]));"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    }
+  ]
+}
