@@ -4,6 +4,8 @@ Código das aulas da parte Web, 2026/2. Cada pasta corresponde a um encontro, e 
 
 Tudo roda direto no navegador, sem instalar nada, com uma exceção anotada mais abaixo.
 
+Páginas no ar: https://maikecristian11.github.io/dev-web-20262/
+
 ## Encontro 6 · JavaScript na interface
 
 Pasta `encontro-06-javascript`. O painel de super-heróis nasce de um array escrito no próprio arquivo.
