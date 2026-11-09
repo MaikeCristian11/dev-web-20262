@@ -4,3 +4,10 @@ dist/
 Thumbs.db
 .vscode/
 *.log
+
+# NUNCA versionar aqui: material de correção
+gabarito/
+gabarito_professor/
+*-resolvido/
+*_gabarito.*
+*_resolvido.*

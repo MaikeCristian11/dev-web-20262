@@ -2,7 +2,7 @@
 
 Código das aulas da parte Web, 2026/2. Cada pasta corresponde a um encontro, e as páginas são numeradas na ordem em que foram construídas em sala.
 
-Tudo roda direto no navegador, sem instalar nada, com uma exceção anotada mais abaixo.
+Os encontros 6 e 7 rodam direto no navegador, sem instalar nada, com uma exceção anotada mais abaixo. O encontro 8 usa React e precisa do Node.js.
 
 Páginas no ar: https://maikecristian11.github.io/dev-web-20262/
 
@@ -33,6 +33,20 @@ Pasta `encontro-07-api`. Os mesmos cards, agora com os dados vindos de fora.
 
 As versões 1 a 5 estão repetidas nesta pasta, para que ela funcione sozinha.
 
+## Encontro 8 · React e Vite
+
+Pasta `encontro-08-react`. O painel volta com componentes React, em cinco etapas. Cada etapa é um projeto separado.
+
+| Pasta | O que mostra |
+|---|---|
+| `01-card-fixo` | Um componente funcional com JSX e dados escritos à mão |
+| `02-componente-separado` | O card vai para o próprio arquivo, com `import` e `export` |
+| `03-props` | O mesmo componente reutilizado com dados diferentes |
+| `04-lista-map` | Os cards saem de um array com `map`, e cada um recebe uma `key` |
+| `05-usabilidade` | CSS Grid, tela pequena, legibilidade e semântica |
+
+O desafio da aula e o passo a passo para rodar estão no README da pasta. Estas páginas não aparecem no endereço publicado: precisam ser rodadas na sua máquina.
+
 ## As APIs usadas
 
 **Super-heróis**, a mesma base do aplicativo Android das terças:
@@ -61,6 +75,8 @@ python -m http.server 8000
 ```
 
 E abra `http://localhost:8000`.
+
+No encontro 8, instale o Node.js e rode `npm install` e `npm run dev` dentro da pasta da etapa. O README de `encontro-08-react` explica os detalhes.
 
 ## Sem internet
 

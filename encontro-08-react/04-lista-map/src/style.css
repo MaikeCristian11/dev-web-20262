@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f2f5fa; color: #14213d; }
+.container { width: min(1100px, 92%); margin: 55px auto; }
+.tag { color: #a76600; font-weight: 800; letter-spacing: .12em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 8px 0; }
+.grid { display: grid; gap: 18px; }
+.card { background: white; padding: 24px; border-radius: 12px; border-top: 5px solid #fca311; }
+.card h2 { margin-top: 0; }
