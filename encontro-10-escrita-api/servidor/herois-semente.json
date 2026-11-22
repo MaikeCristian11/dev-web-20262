@@ -1,0 +1,98 @@
+[
+  {
+    "id": 70,
+    "nome": "Batman",
+    "nomeReal": "Bruce Wayne",
+    "editora": "DC Comics",
+    "poder": 47,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/70-batman.jpg"
+  },
+  {
+    "id": 346,
+    "nome": "Iron Man",
+    "nomeReal": "Tony Stark",
+    "editora": "Marvel Comics",
+    "poder": 100,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/346-iron-man.jpg"
+  },
+  {
+    "id": 226,
+    "nome": "Doctor Strange",
+    "nomeReal": "Stephen Strange",
+    "editora": "Marvel Comics",
+    "poder": 100,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/226-doctor-strange.jpg"
+  },
+  {
+    "id": 720,
+    "nome": "Wonder Woman",
+    "nomeReal": "Diana Prince",
+    "editora": "DC Comics",
+    "poder": 100,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/720-wonder-woman.jpg"
+  },
+  {
+    "id": 263,
+    "nome": "Flash",
+    "nomeReal": "Jay Garrick",
+    "editora": "DC Comics",
+    "poder": 68,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/263-flash.jpg"
+  },
+  {
+    "id": 620,
+    "nome": "Spider-Man",
+    "nomeReal": "Peter Parker",
+    "editora": "Marvel Comics",
+    "poder": 74,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/620-spider-man.jpg"
+  },
+  {
+    "id": 332,
+    "nome": "Hulk",
+    "nomeReal": "Bruce Banner",
+    "editora": "Marvel Comics",
+    "poder": 98,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/332-hulk.jpg"
+  },
+  {
+    "id": 106,
+    "nome": "Black Panther",
+    "nomeReal": "T'Challa",
+    "editora": "Marvel Comics",
+    "poder": 41,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/106-black-panther.jpg"
+  },
+  {
+    "id": 638,
+    "nome": "Storm",
+    "nomeReal": "Ororo Munroe",
+    "editora": "Marvel Comics",
+    "poder": 88,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/638-storm.jpg"
+  },
+  {
+    "id": 201,
+    "nome": "Daredevil",
+    "nomeReal": "Matt Murdock",
+    "editora": "Marvel Comics",
+    "poder": 61,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/201-daredevil.jpg"
+  },
+  {
+    "id": 298,
+    "nome": "Green Arrow",
+    "nomeReal": "Oliver Queen",
+    "editora": "DC Comics",
+    "poder": 39,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/298-green-arrow.jpg"
+  },
+  {
+    "id": 659,
+    "nome": "Thor",
+    "nomeReal": "Thor Odinson",
+    "editora": "Marvel Comics",
+    "poder": 100,
+    "imagem": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/659-thor.jpg"
+  }
+]

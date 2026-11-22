@@ -1,0 +1,15 @@
+meta {
+  name: Preflight (OPTIONS)
+  type: http
+  seq: 8
+}
+
+options {
+  url: {{baseUrl}}/herois
+  body: none
+  auth: none
+}
+
+docs {
+  O navegador manda esta sozinho antes de um POST. 204 com --cors, 403 sem.
+}

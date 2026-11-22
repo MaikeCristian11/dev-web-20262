@@ -1,0 +1,332 @@
+{
+  "info": {
+    "_postman_id": "a7c1e2f4-0a10-4b55-9c3e-0006957e1000",
+    "name": "0006957 · Encontro 10 · API local",
+    "description": "Requisicoes para a API local do encontro 10, a que faz o papel da API Spring Boot de cada equipe.\n\nAntes de usar, suba o servidor:\n\n    cd encontro-10-escrita-api/servidor\n    node api.js --cors\n\nAtencao: o Postman nao aplica a regra de CORS. Todas estas requisicoes funcionam mesmo com a API rodando sem --cors. E exatamente por isso que o Postman engana: o problema de CORS so aparece no navegador.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 · Ler",
+      "item": [
+        {
+          "name": "Listar herois",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/herois",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois"
+              ]
+            },
+            "description": "Devolve a lista inteira. E a mesma leitura que a tela faz ao abrir."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 200', () => pm.response.to.have.status(200));",
+                  "const lista = pm.response.json();",
+                  "pm.test('veio uma lista', () => pm.expect(lista).to.be.an('array'));",
+                  "if (lista.length) pm.collectionVariables.set('heroiId', lista[0].id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar um heroi",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/herois/{{heroiId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois",
+                "{{heroiId}}"
+              ]
+            },
+            "description": "Busca por id. O heroiId e preenchido pela requisicao anterior."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Heroi que nao existe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/herois/99999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois",
+                "99999"
+              ]
+            },
+            "description": "O 404 tambem e uma resposta: o fetch nao lanca erro aqui. Quem confere e o seu codigo."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 · Escrever",
+      "item": [
+        {
+          "name": "Cadastrar (201)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/herois",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois"
+              ]
+            },
+            "description": "Cria um registro. Repare nas tres coisas que a leitura nao tinha: o metodo, o cabecalho Content-Type e o corpo em JSON. A resposta devolve o registro criado, ja com o id gerado pelo servidor.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Mulher-Gato\",\n  \"nomeReal\": \"Selina Kyle\",\n  \"editora\": \"DC Comics\",\n  \"poder\": 40\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 201', () => pm.response.to.have.status(201));",
+                  "const criado = pm.response.json();",
+                  "pm.test('o servidor gerou um id', () => pm.expect(criado.id).to.be.a('number'));",
+                  "pm.collectionVariables.set('criadoId', criado.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cadastrar invalido (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/herois",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois"
+              ]
+            },
+            "description": "Nome com uma letra so e poder acima de 100. O servidor recusa e devolve a lista de problemas por campo. E resposta, nao falha: no navegador, isso NAO cai no catch.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"X\",\n  \"editora\": \"\",\n  \"poder\": 500\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 400', () => pm.response.to.have.status(400));",
+                  "const corpo = pm.response.json();",
+                  "pm.test('traz erro por campo', () => {",
+                  "  pm.expect(corpo.erros).to.be.an('object');",
+                  "  pm.expect(corpo.erros).to.have.property('nome');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Editar (200)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/herois/{{heroiId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois",
+                "{{heroiId}}"
+              ]
+            },
+            "description": "Substitui o registro inteiro. A URL tem o id; o corpo vai completo. Campo que voce nao enviar, voce perde.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Batman\",\n  \"nomeReal\": \"Bruce Wayne\",\n  \"editora\": \"DC Comics\",\n  \"poder\": 55\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 200', () => pm.response.to.have.status(200));",
+                  "pm.test('o poder mudou', () => pm.expect(pm.response.json().poder).to.eql(55));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Excluir (204)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/herois/{{criadoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois",
+                "{{criadoId}}"
+              ]
+            },
+            "description": "Remove o registro criado acima. Responde 204: deu certo e nao tem corpo para ler. Chamar resposta.json() aqui quebraria a aplicacao."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('responde 204', () => pm.response.to.have.status(204));",
+                  "pm.test('sem corpo', () => pm.expect(pm.response.text()).to.eql(''));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3 · O que o navegador faz sozinho",
+      "item": [
+        {
+          "name": "Preflight (OPTIONS)",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/herois",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "herois"
+              ]
+            },
+            "description": "Antes de um POST, o navegador manda esta pergunta sozinho. Com a API rodando com --cors, responde 204 e o POST segue. Sem --cors, responde 403 e o POST nunca sai. Voce nunca escreve esta requisicao: ela aparece so na aba Network."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('204 com --cors, 403 sem', () => {",
+                  "  pm.expect([204, 403]).to.include(pm.response.code);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001"
+    },
+    {
+      "key": "heroiId",
+      "value": "70"
+    },
+    {
+      "key": "criadoId",
+      "value": ""
+    }
+  ]
+}

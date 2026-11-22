@@ -1,0 +1,15 @@
+meta {
+  name: Buscar um heroi
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/herois/{{heroiId}}
+  body: none
+  auth: none
+}
+
+docs {
+  Busca por id.
+}

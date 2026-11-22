@@ -1,0 +1,28 @@
+meta {
+  name: Editar (200)
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/herois/{{heroiId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nome": "Batman",
+    "nomeReal": "Bruce Wayne",
+    "editora": "DC Comics",
+    "poder": 55
+  }
+}
+
+docs {
+  Substitui o registro inteiro. Campo que nao for enviado, se perde.
+}

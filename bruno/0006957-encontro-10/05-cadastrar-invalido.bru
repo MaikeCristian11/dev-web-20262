@@ -1,0 +1,27 @@
+meta {
+  name: Cadastrar invalido (400)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/herois
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nome": "X",
+    "editora": "",
+    "poder": 500
+  }
+}
+
+docs {
+  O servidor recusa e devolve erro por campo. No navegador isso NAO cai no catch.
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Excluir (204)
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/herois/{{heroiId}}
+  body: none
+  auth: none
+}
+
+docs {
+  Responde 204: deu certo e nao tem corpo. Chamar .json() aqui quebraria.
+}

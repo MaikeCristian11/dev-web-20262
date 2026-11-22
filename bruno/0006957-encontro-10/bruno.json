@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "0006957 Encontro 10",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

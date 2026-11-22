@@ -1,0 +1,28 @@
+meta {
+  name: Cadastrar (201)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/herois
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nome": "Mulher-Gato",
+    "nomeReal": "Selina Kyle",
+    "editora": "DC Comics",
+    "poder": 40
+  }
+}
+
+docs {
+  Metodo, cabecalho e corpo em JSON. Responde 201 com o id gerado.
+}
