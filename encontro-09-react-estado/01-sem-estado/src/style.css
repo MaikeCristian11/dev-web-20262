@@ -1,0 +1,147 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f2f5fa;
+  color: #14213d;
+}
+
+.container { width: min(1100px, 92%); margin: 55px auto; }
+.tag { color: #a76600; font-weight: 800; letter-spacing: .12em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 8px 0; }
+header p { color: #5b6478; margin-top: 0; }
+
+/* ---- controles ---- */
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin: 28px 0 18px;
+}
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo label { font-size: .85rem; font-weight: 700; color: #5b6478; }
+.campo input, .campo select {
+  font: inherit;
+  padding: 10px 12px;
+  min-height: 44px;
+  border: 1px solid #c9d0de;
+  border-radius: 8px;
+  background: white;
+  color: #14213d;
+}
+.campo input:focus-visible,
+.campo select:focus-visible,
+button:focus-visible { outline: 3px solid #14213d; outline-offset: 2px; }
+.campo input:disabled, .campo select:disabled { background: #e9edf4; color: #8e97ac; }
+
+button {
+  font: inherit;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #14213d;
+  border-radius: 8px;
+  background: #14213d;
+  color: white;
+  cursor: pointer;
+}
+button.secundario { background: white; color: #14213d; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+.contador { color: #5b6478; font-size: .95rem; margin: 0 0 14px; }
+
+/* ---- grade de cards ---- */
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+.card {
+  background: white;
+  padding: 0;
+  border-radius: 12px;
+  border-top: 5px solid #fca311;
+  box-shadow: 0 4px 18px #14213d12;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #dfe4ee;
+  display: block;
+}
+.card .corpo { padding: 18px 20px 20px; }
+.card h2 { font-size: 1.15rem; margin: 0 0 6px; }
+.card .real { color: #5b6478; margin: 0 0 10px; font-size: .9rem; }
+.card .editora {
+  display: inline-block;
+  background: #eef1f7;
+  color: #3a4256;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.card .stats { margin: 12px 0 0; font-size: .86rem; color: #3a4256; }
+.card .destaque {
+  background: #fff3d7;
+  border-left: 4px solid #c26b00;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin: 12px 0 0;
+  font-size: .85rem;
+}
+
+/* ---- estados ---- */
+.estado {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  border-top: 5px solid #c9d0de;
+}
+.estado.carregando { color: #3a4256; }
+.estado.vazio { border-top-color: #fca311; color: #3a4256; }
+.estado.erro { border-top-color: #b3261e; text-align: left; }
+.estado.erro strong { display: block; font-size: 1.1rem; margin-bottom: 6px; color: #b3261e; }
+.estado.erro p { color: #3a4256; margin: 0 0 16px; }
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: -3px;
+  border: 3px solid #dfe4ee;
+  border-top-color: #fca311;
+  border-radius: 50%;
+  animation: girar .8s linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+
+/* ---- favoritos ---- */
+.favorito {
+  margin-top: 12px;
+  width: 100%;
+  background: white;
+  color: #14213d;
+}
+.favorito[aria-pressed="true"] {
+  background: #fff3d7;
+  border-color: #c26b00;
+  color: #7a4300;
+}
+
+@media (max-width: 600px) {
+  .container { margin: 24px auto; }
+  .card .corpo { padding: 16px; }
+  .controles { gap: 10px; }
+  .campo { flex: 1 1 100%; }
+}
